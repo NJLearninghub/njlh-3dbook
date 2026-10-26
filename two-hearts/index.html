@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Two Hearts · Petrol vs Electric · NJ Learning Hub</title>
+<style>
+:root{--g:rgba(40,46,60,.42);--b:rgba(255,255,255,.16);--t:#eef2f8;--m:rgba(230,236,248,.6);--or:#ff8a3a;--bl:#7cc4ff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#05070c;color:var(--t);font:15px/1.35 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;overflow:hidden;touch-action:none}
+canvas{position:fixed;inset:0;display:block}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),var(--g);border:1px solid var(--b);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 30px rgba(0,0,0,.45);border-radius:22px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#ui{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 10px) 12px calc(env(safe-area-inset-bottom) + 10px);max-width:760px;margin:0 auto}
+#ui>*{pointer-events:auto}
+.top{display:flex;gap:8px;align-items:center}
+.ib{height:46px;min-width:46px;display:flex;align-items:center;justify-content:center;border-radius:23px;font-size:18px}
+.title{flex:1;display:flex;align-items:center;height:50px;border-radius:25px;padding:0 6px;min-width:0}
+.title .tx{flex:1;min-width:0;text-align:center}
+.title b{display:block;font-size:16px}.title small{display:block;color:var(--m);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pills{display:flex;justify-content:space-between;margin:12px 4px 8px}
+.pill{padding:6px 14px;border-radius:16px;font-weight:700;letter-spacing:.12em;font-size:12px}
+.pill i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{padding:12px 13px;border-radius:18px;font-size:13px}
+.eff{font-size:24px;font-weight:700;margin-bottom:6px}.eff small{font-size:12px;opacity:.7;font-weight:500}
+.bar{height:9px;border-radius:5px;background:rgba(255,255,255,.12);display:flex;overflow:hidden;margin-bottom:8px}
+.bar span{height:100%;transition:width .3s}
+.row{color:var(--m);display:flex;justify-content:space-between}.row b{color:var(--t);font-variant-numeric:tabular-nums}
+.sp{flex:1}
+.story{padding:11px 14px;border-radius:18px;margin-bottom:8px}
+.sh{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;color:var(--m);text-transform:uppercase}
+.sh .lbl{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash{display:flex;gap:4px}.dash i{width:16px;height:3px;border-radius:2px;background:rgba(255,255,255,.2)}.dash i.on{background:#fff}
+.cap{font-size:16px;font-weight:600;margin-top:5px;min-height:42px}
+.ctl{display:flex;align-items:center;gap:8px;padding:7px;border-radius:30px}
+.btn{height:48px;padding:0 18px;border-radius:24px;background:rgba(255,255,255,.08);font-weight:600;user-select:none;-webkit-user-select:none}
+.btn.on{background:rgba(255,255,255,.25)}
+#drive{background:#eef2f8;color:#111;margin-left:auto}#drive.on{background:#fff;box-shadow:0 0 22px rgba(255,255,255,.5)}
+.spd{display:flex;align-items:center;gap:6px;margin:0 auto}.spd b{font-size:28px;font-variant-numeric:tabular-nums;min-width:44px;text-align:right}.spd small{color:var(--m);font-size:11px;line-height:1.1}
+.foot{text-align:center;font-size:11px;color:var(--m);margin-top:6px;letter-spacing:.06em}
+#menu{position:fixed;inset:auto 12px 50% 12px;max-width:420px;margin:0 auto;padding:14px;display:none;z-index:5;transform:translateY(50%)}
+#menu.show{display:block}#menu button{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:12px}#menu button:hover,#menu button.cur{background:rgba(255,255,255,.12)}
+#menu .note{font-size:12px;color:var(--m);padding:8px 12px;line-height:1.5}
+@media(min-width:900px){#ui{max-width:980px}.cards{grid-template-columns:300px 1fr 300px}.cards .card:last-child{grid-column:3}.cap{font-size:18px}}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="ui">
+ <div class="top">
+  <a class="ib glass" href="../" title="Book" style="color:inherit;text-decoration:none">‹</a>
+  <div class="title glass"><button class="ib" id="prev">‹</button><div class="tx"><b>Two Hearts</b><small id="chs">1 / 6</small></div><button class="ib" id="next">›</button></div>
+  <button class="ib glass" id="snd" title="Sound">🔇</button><button class="ib glass" id="mnu" title="Chapters">☰</button>
+ </div>
+ <div class="pills"><span class="pill glass"><i style="background:var(--or);box-shadow:0 0 8px var(--or)"></i>PETROL</span><span class="pill glass"><i style="background:var(--bl);box-shadow:0 0 8px var(--bl)"></i>ELECTRIC</span></div>
+ <div class="cards">
+  <div class="card glass"><div class="eff" style="color:var(--or)">20–30<small>% to wheels</small></div>
+   <div class="bar"><span style="width:25%;background:#ffc27a"></span><span id="pb" style="width:70%;background:#ff4b2b"></span></div>
+   <div class="row">Fuel burned <b id="pf">0.0 kJ</b></div><div class="row">Heat &amp; loss <b id="ph">0.0 kJ</b></div><div class="row">Brakes (heat) <b id="pk">0.0 kJ</b></div></div>
+  <div class="card glass"><div class="eff" style="color:var(--bl)"><small>about </small>77–90<small>%</small></div>
+   <div class="bar"><span style="width:80%;background:#9fd3ff"></span><span style="width:15%;background:#3d6be0"></span></div>
+   <div class="row">From grid <b id="eg">0.0 kJ</b></div><div class="row">Lost <b id="el">0.0 kJ</b></div><div class="row">Regen back <b id="er" style="color:#8dffb0">0.0 kJ</b></div></div>
+ </div>
+ <div class="sp"></div>
+ <div class="story glass"><div class="sh"><span class="lbl" id="clbl"></span><span class="dash" id="dash"></span><button class="ib" id="pause" style="height:30px;min-width:30px;background:rgba(255,255,255,.1);font-size:12px">❚❚</button></div><div class="cap" id="cap"></div></div>
+ <div class="ctl glass"><button class="btn" id="brake">◉ Brake</button><div class="spd"><b id="kmh">0</b><small>km/h<br>1200 kg car</small></div><button class="btn" id="drive">⇡ Drive</button></div>
+ <div class="foot">NJ Learning Hub · Nihal Jani</div>
+</div>
+<div id="menu" class="glass"></div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
+import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
+const $=s=>document.querySelector(s);
+// ---------- chapters (original text) ----------
+const CH=[
+ ['The two engines','Same car body, same 1200 kg. One burns petrol, one draws on a battery. Hold Drive.'],
+ ['Chemical → heat','Petrol stores ~34 MJ per litre. Burning it makes hot gas, and most of that heat leaves through the radiator and exhaust.'],
+ ['Electric → motion','A motor turns electrical energy straight into rotation. Battery + inverter + motor lose only ~10–20%.'],
+ ['Where it goes','Only about a quarter of the fuel energy reaches the petrol car\'s wheels. The EV delivers ~4 of every 5 joules.'],
+ ['Friction & drag','At the wheels, energy fights rolling friction (∝ v) and air drag (power ∝ v³). Double speed → 8× drag power.'],
+ ['Braking back','Brake now. Petrol brakes turn ½mv² into heat. The EV motor becomes a generator and puts ~60% back.']];
+let ch=0,paused=false,chT=0;
+const dash=$('#dash');CH.forEach(()=>dash.append(document.createElement('i')));
+function setCh(i){ch=(i+CH.length)%CH.length;chT=0;$('#chs').textContent=`${ch+1} / 6 · ${CH[ch][0]}`;$('#clbl').textContent=`Chapter ${ch+1} · ${CH[ch][0]}`;$('#cap').textContent=CH[ch][1];[...dash.children].forEach((d,k)=>d.className=k<=ch?'on':'');
+ [...$('#menu').querySelectorAll('button')].forEach((b,k)=>b.className=k===ch?'cur':'');}
+$('#menu').innerHTML=CH.map((c,i)=>`<button data-i="${i}">${i+1}. ${c[0]}</button>`).join('')+'<div class="note">Model: m = 1200 kg, C<sub>d</sub>A = 0.65 m², μ<sub>r</sub> = 0.012. Petrol engine η ≈ 25%, EV grid-to-wheel η ≈ 80%, regen recovers ≈ 60% of braking KE. Time runs in real seconds.</div>';
+$('#menu').onclick=e=>{const b=e.target.closest('button');if(b){setCh(+b.dataset.i);$('#menu').classList.remove('show')}};
+$('#mnu').onclick=()=>$('#menu').classList.toggle('show');
+$('#prev').onclick=()=>setCh(ch-1);$('#next').onclick=()=>setCh(ch+1);
+$('#pause').onclick=()=>{paused=!paused;$('#pause').textContent=paused?'▶':'❚❚'};
+setCh(0);
+// ---------- renderer ----------
+const R=new THREE.WebGLRenderer({canvas:$('#c'),antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+R.toneMapping=THREE.ACESFilmicToneMapping;
+const S=new THREE.Scene();S.background=new THREE.Color(0x04060b);S.fog=new THREE.Fog(0x04060b,14,45);
+const cam=new THREE.PerspectiveCamera(45,1,.1,200);
+const ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.enablePan=false;ctl.minDistance=6;ctl.maxDistance=22;ctl.maxPolarAngle=1.45;ctl.target.set(0,.6,0);
+const comp=new EffectComposer(R);comp.addPass(new RenderPass(S,cam));
+const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.8,.5,.15);comp.addPass(bloom);comp.addPass(new OutputPass());
+// road
+const road=new THREE.Mesh(new THREE.PlaneGeometry(14,120),new THREE.MeshStandardMaterial({color:0x0b0e14,roughness:.35,metalness:.6}));road.rotation.x=-Math.PI/2;S.add(road);
+S.add(new THREE.HemisphereLight(0x6070a0,0x000000,.5));
+const lanes=new THREE.Group();S.add(lanes);
+for(let i=0;i<24;i++)for(const x of[-5.5,0,5.5]){const m=new THREE.Mesh(new THREE.PlaneGeometry(x?0.08:0.18,x?120:1.6),new THREE.MeshBasicMaterial({color:x?0x334055:0x6b7590}));m.rotation.x=-Math.PI/2;m.position.set(x,.01,x?0:-60+i*5);if(x&&i)continue;lanes.add(m);}
+// street lamps glow reflections
+const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+function pool(col,x){const m=new THREE.Mesh(new THREE.PlaneGeometry(4.2,7),new THREE.MeshBasicMaterial({map:glowTex,color:col,transparent:true,opacity:.55,blending:THREE.AdditiveBlending,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.set(x,.02,0);S.add(m);return m}
+// car builder: wireframe edges
+function car(col,x,ev){
+ const g=new THREE.Group();g.position.x=x;S.add(g);
+ const lm=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.9});
+ const edge=(geo,p)=>{const l=new THREE.LineSegments(new THREE.EdgesGeometry(geo,20),lm);l.position.copy(p);g.add(l);return l};
+ // body profile extruded
+ const sh=new THREE.Shape();sh.moveTo(-2.2,.35);sh.lineTo(2.2,.35);sh.lineTo(2.25,.95);sh.lineTo(1.4,1.1);sh.lineTo(.8,1.75);sh.lineTo(-1.1,1.75);sh.lineTo(-1.9,1.15);sh.lineTo(-2.25,1.05);sh.closePath();
+ const body=new THREE.ExtrudeGeometry(sh,{depth:1.8,bevelEnabled:false});body.translate(0,0,-.9);body.rotateY(Math.PI/2);edge(body,new THREE.Vector3());
+ const wheels=[];for(const [wx,wz] of[[-.95,1.4],[.95,1.4],[-.95,-1.45],[.95,-1.45]]){const w=edge(new THREE.CylinderGeometry(.42,.42,.28,14).rotateZ(Math.PI/2),new THREE.Vector3(wx,.42,wz));wheels.push(w)}
+ // floor plate glow
+ const plate=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(2.6,5.2).rotateX(-Math.PI/2)),new THREE.LineBasicMaterial({color:col}));plate.position.y=.03;g.add(plate);
+ const hot=new THREE.Group();g.add(hot);
+ const hm=new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.85});
+ if(!ev){ // engine block + cylinders
+  const blk=new THREE.Mesh(new THREE.BoxGeometry(1,.6,.8),new THREE.MeshBasicMaterial({color:0xff5a1f,transparent:true,opacity:.5}));blk.position.set(0,.85,1.4);hot.add(blk);
+  edge(new THREE.BoxGeometry(1,.6,.8),new THREE.Vector3(0,.85,1.4));
+  for(let i=0;i<4;i++){const c=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,.3,8),hm);c.position.set(-.33+i*.22,1.25,1.4);hot.add(c)}
+  const ex=new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,4,6).rotateX(Math.PI/2),hm);ex.position.set(.5,.35,-.6);hot.add(ex);
+ } else { // battery cells + motor
+  for(let i=0;i<5;i++)for(let j=0;j<3;j++){const c=new THREE.Mesh(new THREE.BoxGeometry(.42,.12,.5),new THREE.MeshBasicMaterial({color:0x2f7dff,transparent:true,opacity:.55}));c.position.set(-.5+j*.5,.45,-1.1+i*.55);hot.add(c);edge(new THREE.BoxGeometry(.42,.12,.5),c.position)}
+  const mot=new THREE.Mesh(new THREE.CylinderGeometry(.25,.25,.5,16).rotateZ(Math.PI/2),new THREE.MeshBasicMaterial({color:0x9fe0ff}));mot.position.set(0,.45,-1.45);hot.add(mot);
+ }
+ return {g,wheels,hot,lm,pool:pool(col,x)};
+}
+const P=car(0xff8a3a,-2.1,false),E=car(0x6fbcff,2.1,true);
+// sparks for regen / heat
+const NP=160,pg=new THREE.BufferGeometry(),pp=new Float32Array(NP*3),pv=[];for(let i=0;i<NP;i++)pv.push({x:0,y:-9,z:0,vx:0,vy:0,vz:0,l:0,c:[0,0,0]});
+pg.setAttribute('position',new THREE.BufferAttribute(pp,3));const pc=new Float32Array(NP*3);pg.setAttribute('color',new THREE.BufferAttribute(pc,3));
+S.add(new THREE.Points(pg,new THREE.PointsMaterial({size:.12,vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,map:glowTex})));
+let pi=0;function emit(x,y,z,c,up){const p=pv[pi++%NP];Object.assign(p,{x,y,z,vx:(Math.random()-.5)*.8,vy:up?1+Math.random():(Math.random()-.2)*.6,vz:up?(Math.random()-.5)*.6:-2-Math.random()*2,l:1,c})}
+// ---------- physics ----------
+const m=1200,CdA=.65,rho=1.2,mu=.012,g=9.8,EP=.25,EE=.80,REG=.6;
+let v=0,drive=false,brk=false,F={pf:0,ph:0,pk:0,eg:0,el:0,er:0};
+const hold=(el,set)=>{const on=e=>{e.preventDefault();set(true);el.classList.add('on');initAudio()},off=()=>{set(false);el.classList.remove('on')};
+ el.addEventListener('pointerdown',on);['pointerup','pointerleave','pointercancel'].forEach(t=>el.addEventListener(t,off))};
+hold($('#drive'),b=>drive=b);hold($('#brake'),b=>brk=b);
+addEventListener('keydown',e=>{if(e.code==='ArrowUp'||e.code==='Space')drive=true;if(e.code==='ArrowDown')brk=true});
+addEventListener('keyup',e=>{if(e.code==='ArrowUp'||e.code==='Space')drive=false;if(e.code==='ArrowDown')brk=false});
+// ---------- sound ----------
+let AC,osc,gain,sound=false;
+function initAudio(){if(AC||!sound)return;AC=new AudioContext();osc=AC.createOscillator();osc.type='sawtooth';gain=AC.createGain();gain.gain.value=0;const f=AC.createBiquadFilter();f.frequency.value=600;osc.connect(f).connect(gain).connect(AC.destination);osc.start()}
+$('#snd').onclick=()=>{sound=!sound;$('#snd').textContent=sound?'🔊':'🔇';if(sound)initAudio();if(AC)gain.gain.value=0};
+const fmt=x=>x<1000?x.toFixed(1)+' kJ':(x/1000).toFixed(2)+' MJ';
+// ---------- loop ----------
+function size(){const w=innerWidth,h=innerHeight;R.setSize(w,h);comp.setSize(w,h);bloom.resolution.set(w,h);cam.aspect=w/h;
+ const port=h>w;cam.position.set(0,port?9.5:6,port?17:13);cam.fov=port?50:42;cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+const clk=new THREE.Clock();let t=0,roadOff=0;
+R.setAnimationLoop(()=>{const dt=Math.min(clk.getDelta(),.05);t+=dt;
+ const a=drive?2.6:0,bd=brk?6:0; // m/s^2
+ const Fres=.5*rho*CdA*v*v+(v>.1?mu*m*g:0);
+ const v0=v;v=Math.max(0,Math.min(42,v+(a-Fres/m-bd)*dt));
+ const dist=(v0+v)/2*dt;
+ const Wwheel=(a>0?m*a*dist+Fres*dist:0)/1000; // kJ delivered to wheels
+ if(Wwheel>0){F.pf+=Wwheel/EP;F.ph+=Wwheel/EP-Wwheel;F.eg+=Wwheel/EE;F.el+=Wwheel/EE-Wwheel}
+ if(bd>0&&v0>0){const dKE=.5*m*(v0*v0-v*v)/1000-Fres*dist/1000;if(dKE>0){F.pk+=dKE;F.er+=dKE*REG;F.eg-=dKE*REG;F.el+=dKE*(1-REG)}}
+ $('#pf').textContent=fmt(F.pf);$('#ph').textContent=fmt(F.ph);$('#pk').textContent=fmt(F.pk);$('#eg').textContent=fmt(Math.max(0,F.eg));$('#el').textContent=fmt(F.el);$('#er').textContent=fmt(F.er);
+ $('#kmh').textContent=Math.round(v*3.6);
+ roadOff=(roadOff+v*dt)%5;lanes.children.forEach((l,i)=>{if(l.geometry.parameters.height<5)l.position.z=-60+(i%24)*5+roadOff});
+ const load=drive?1:Math.min(1,v/30)*.3;
+ for(const C of[P,E]){C.wheels.forEach(w=>w.rotation.x-=v*dt/.42);C.g.position.y=Math.sin(t*20)*.006*v/10}
+ P.hot.children.forEach((c,i)=>{c.material.opacity=.35+.6*load*(.5+.5*Math.sin(t*40+i*1.6));if(i>0&&i<5)c.position.y=1.25+.06*Math.sin(t*(8+v)+i*1.6)});
+ E.hot.children.forEach((c,i)=>{c.material.opacity=brk&&v>.5?.5+.5*Math.sin(t*20+i):.35+.5*load});
+ E.hot.children.at(-1).rotation.x+=v*dt*2;
+ P.pool.material.opacity=.3+.5*load;E.pool.material.opacity=.3+.4*load+(brk&&v>.5?.3:0);
+ if(drive&&Math.random()<.6)emit(-2.1+.5,.4,-2.6,[1,.4,.1],false);
+ if(drive&&Math.random()<.4)emit(-2.1,1.3,1.4,[1,.25,.05],true);
+ if(brk&&v>.5){emit(2.1+(Math.random()-.5),.5,-1+Math.random()*2,[.5,1,.7],true);emit(-2.1+(Math.random()>.5?.95:-.95),.4,1.4,[1,.3,.1],true)}
+ pv.forEach((p,i)=>{if(p.l>0){p.l-=dt*1.2;p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt}else p.y=-9;pp.set([p.x,p.y,p.z],i*3);pc.set(p.c.map(c=>c*Math.max(0,p.l)),i*3)});
+ pg.attributes.position.needsUpdate=pg.attributes.color.needsUpdate=true;
+ if(AC&&sound){osc.frequency.value=50+v*6+(drive?30:0);gain.gain.value=.03+.05*load}
+ if(!paused){chT+=dt;if(chT>9)setCh(ch+1)}
+ ctl.update();comp.render();});
+</script></body></html>
