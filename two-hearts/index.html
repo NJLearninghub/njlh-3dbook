@@ -67,7 +67,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
@@ -92,11 +91,10 @@ $('#prev').onclick=()=>setCh(ch-1);$('#next').onclick=()=>setCh(ch+1);
 $('#pause').onclick=()=>{paused=!paused;$('#pause').textContent=paused?'▶':'❚❚'};
 setCh(0);
 // ---------- renderer ----------
-const R=new THREE.WebGLRenderer({canvas:$('#c'),antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const R=new THREE.WebGLRenderer({canvas:$('#c'),antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,1.5));
 R.toneMapping=THREE.ACESFilmicToneMapping;
 const S=new THREE.Scene();S.background=new THREE.Color(0x04060b);S.fog=new THREE.Fog(0x04060b,14,45);
 const cam=new THREE.PerspectiveCamera(45,1,.1,200);
-const ctl=new OrbitControls(cam,R.domElement);ctl.enableDamping=true;ctl.enablePan=false;ctl.minDistance=6;ctl.maxDistance=22;ctl.maxPolarAngle=1.45;ctl.target.set(0,.6,0);
 const comp=new EffectComposer(R);comp.addPass(new RenderPass(S,cam));
 const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.8,.5,.15);comp.addPass(bloom);comp.addPass(new OutputPass());
 // road
@@ -152,8 +150,66 @@ $('#snd').onclick=()=>{sound=!sound;$('#snd').textContent=sound?'🔊':'🔇';if
 const fmt=x=>x<1000?x.toFixed(1)+' kJ':(x/1000).toFixed(2)+' MJ';
 // ---------- loop ----------
 function size(){const w=innerWidth,h=innerHeight;R.setSize(w,h);comp.setSize(w,h);bloom.resolution.set(w,h);cam.aspect=w/h;
- const port=h>w;cam.position.set(0,port?9.5:6,port?17:13);cam.fov=port?50:42;cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();
+ PORT=h>w;cam.updateProjectionMatrix()}
+let PORT=false;addEventListener('resize',size);size();
+
+// ---------- cinematic camera rig ----------
+const V3=(x,y,z)=>new THREE.Vector3(x,y,z);
+// shot = [camera pos, look target, fov]
+const SH={
+ wide:[V3(9,6,12),V3(0,.6,0),40], hero:[V3(-7,3.2,9),V3(0,.8,0),38],
+ eng:[V3(-5.2,2.6,4.4),V3(-2.1,1,1.3),30], engTop:[V3(-2.6,4.4,3.6),V3(-2.1,1,1.2),32],
+ bat:[V3(5.4,1.6,1.8),V3(2.1,.45,-.4),32], mot:[V3(4.2,1.1,-4.2),V3(2.1,.45,-1.4),30],
+ low:[V3(6.5,.55,3.5),V3(0,.7,-3),36], lowL:[V3(-6.5,.55,3.5),V3(0,.7,-3),36],
+ rear:[V3(0,2.2,10),V3(0,.9,-4),40], front:[V3(1,1.6,-9),V3(0,.8,0),40],
+ top:[V3(0,13,4),V3(0,0,-.5),40], regen:[V3(5,1.3,3),V3(2.1,.5,0),30], pbrake:[V3(-4.6,.8,3.4),V3(-2.1,.42,1.4),30]};
+const TOUR=[['hero','wide','low','rear'],['eng','engTop','pbrake','hero'],['bat','mot','low','wide'],['top','eng','bat','wide'],['rear','lowL','front','low'],['regen','pbrake','mot','wide']];
+const cur={pos:V3(9,6,12),look:V3(0,.6,0),fov:40},from={pos:V3(),look:V3(),fov:40};let tr=1,shotName='wide',stg=-1;
+function goShot(n){if(n===shotName)return;shotName=n;from.pos.copy(cur.pos);from.look.copy(cur.look);from.fov=cur.fov;tr=0}
+// user orbit offset (drag), eases back after release
+const orb={yaw:0,pitch:0,drag:false,lx:0,ly:0,rel:0};
+R.domElement.addEventListener('pointerdown',e=>{orb.drag=true;orb.lx=e.clientX;orb.ly=e.clientY;R.domElement.setPointerCapture(e.pointerId)});
+R.domElement.addEventListener('pointermove',e=>{if(!orb.drag)return;orb.yaw-=(e.clientX-orb.lx)*.006;orb.pitch=Math.max(-.5,Math.min(.6,orb.pitch+(e.clientY-orb.ly)*.004));orb.lx=e.clientX;orb.ly=e.clientY});
+['pointerup','pointercancel'].forEach(t=>R.domElement.addEventListener(t,()=>{orb.drag=false;orb.rel=0}));
+R.domElement.style.touchAction='none';
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+let drv=0,brkS=0,shk=0;const tmp=V3(),tmpL=V3();
+function camUpdate(dt,t,v){
+ const st=Math.min(3,Math.floor(chT/(9/4)));if(st!==stg||TOUR[ch][st]!==shotName){stg=st;goShot(TOUR[ch][st])}
+ const S_=SH[shotName];tr=Math.min(1,tr+dt/1.6);const k=ease(tr);
+ tmp.lerpVectors(from.pos,S_[0],k);tmpL.lerpVectors(from.look,S_[1],k);let fov=from.fov+(S_[2]-from.fov)*k;
+ if(tr>=1){tmp.copy(S_[0]);tmpL.copy(S_[1]);fov=S_[2]}
+ drv+=((drive?1:0)-drv)*Math.min(1,dt*2);brkS+=((brk&&v>.5?1:0)-brkS)*Math.min(1,dt*3);
+ const sp=Math.min(1,v/30);
+ // drive: pull back + wider; brake: push in toward EV regen
+ const off=tmp.clone().sub(tmpL);let dist=(S_[2]<=32?1.45:1)+.18*drv+.12*sp-.16*brkS;if(PORT)dist*=1.45;
+ tmpL.lerp(V3(2.1,.5,0),.35*brkS);
+ // slow drift orbit + handheld sway
+ const yaw=Math.sin(t*.13)*.16+orb.yaw,pitch=Math.sin(t*.09)*.05+orb.pitch;
+ off.applyAxisAngle(V3(0,1,0),yaw);const r=off.length();off.y+=r*pitch;off.multiplyScalar(dist);
+ if(!orb.drag){orb.rel+=dt;if(orb.rel>1.2){const d=Math.min(1,dt*1.5);orb.yaw*=1-d;orb.pitch*=1-d}}
+ cur.pos.copy(tmpL).add(off);cur.look.copy(tmpL);cur.fov=fov+9*drv*sp+4*sp-3*brkS;
+ shk=.015+.05*drv*sp+.03*brkS*sp;
+ cur.pos.x+=Math.sin(t*1.7)*.04+(Math.random()-.5)*shk;cur.pos.y+=Math.sin(t*1.3+1)*.03+(Math.random()-.5)*shk;
+ cam.position.copy(cur.pos);cam.lookAt(cur.look);cam.rotation.z+=Math.sin(t*.7)*.006;cam.fov=cur.fov+(PORT?10:0);cam.updateProjectionMatrix();
+}
+// speed lines
+const NS=70,sg=new THREE.BufferGeometry(),sp_=new Float32Array(NS*6),sd=[];
+for(let i=0;i<NS;i++)sd.push({x:(Math.random()<.5?-1:1)*(5+Math.random()*8),y:.3+Math.random()*4,z:-40+Math.random()*60});
+sg.setAttribute('position',new THREE.BufferAttribute(sp_,3));const smat=new THREE.LineBasicMaterial({color:0x9fc8ff,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false});S.add(new THREE.LineSegments(sg,smat));
+// street lamps (scrolling, streak with speed)
+const lamps=[];for(let i=0;i<10;i++)for(const sx of[-7.5,7.5]){const L=new THREE.Group();const post=new THREE.Mesh(new THREE.BoxGeometry(.08,4,.08),new THREE.MeshBasicMaterial({color:0x1a2232}));post.position.y=2;L.add(post);
+ const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:0xffd9a0,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true}));sprite.position.set(-Math.sign(sx)*.4,4,0);sprite.scale.set(1.4,1.4,1);L.add(sprite);
+ const pl=new THREE.Mesh(new THREE.PlaneGeometry(3,3),new THREE.MeshBasicMaterial({map:glowTex,color:0xffc070,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false}));pl.rotation.x=-Math.PI/2;pl.position.set(-Math.sign(sx)*.8,.015,0);L.add(pl);
+ L.position.set(sx,0,-50+i*7);S.add(L);lamps.push({L,sprite})}
+// energy flow along fuel line / HV cable
+function flow(path,col,n){const c=new THREE.CatmullRomCurve3(path);const geo=new THREE.BufferGeometry(),pos=new Float32Array(n*3);geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ const mat=new THREE.PointsMaterial({size:.16,color:col,map:glowTex,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false});S.add(new THREE.Points(geo,mat));
+ S.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c.getPoints(40)),new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.35})));return{c,geo,pos,n,mat,u:0}}
+const fuel=flow([V3(-2.1,.5,-1.6),V3(-1.5,.45,-.4),V3(-1.6,.6,.8),V3(-2.1,.85,1.4)],0xffa040,18);
+const hv=flow([V3(2.1,.55,.6),V3(2.6,.6,-.2),V3(2.5,.55,-1),V3(2.1,.45,-1.45)],0x7fd0ff,18);
+function flowUpd(F_,dt,rate,dir){F_.u=(F_.u+dt*rate*dir+10)%1;for(let i=0;i<F_.n;i++){const p=F_.c.getPointAt((F_.u+i/F_.n)%1);F_.pos.set([p.x,p.y,p.z],i*3)}F_.geo.attributes.position.needsUpdate=true}
+let vPrev=0;
 const clk=new THREE.Clock();let t=0,roadOff=0;
 R.setAnimationLoop(()=>{const dt=Math.min(clk.getDelta(),.05);t+=dt;
  const a=drive?2.6:0,bd=brk?6:0; // m/s^2
@@ -179,5 +235,16 @@ R.setAnimationLoop(()=>{const dt=Math.min(clk.getDelta(),.05);t+=dt;
  pg.attributes.position.needsUpdate=pg.attributes.color.needsUpdate=true;
  if(AC&&sound){osc.frequency.value=50+v*6+(drive?30:0);gain.gain.value=.03+.05*load}
  if(!paused){chT+=dt;if(chT>9)setCh(ch+1)}
- ctl.update();comp.render();});
+
+ const acc=(v-vPrev)/Math.max(dt,1e-3);vPrev=v;
+ for(const C of[P,E]){C.g.rotation.x+=((-acc*.004)-C.g.rotation.x)*Math.min(1,dt*5);C.g.position.y=Math.sin(t*20+C.g.position.x)*.006*v/10+Math.sin(t*2.3+C.g.position.x)*.012}
+ const sf=Math.min(1,v/25);smat.opacity=.55*sf;const len=.5+v*.12;
+ sd.forEach((d,i)=>{d.z+=v*dt*1.5;if(d.z>20)d.z-=60;sp_.set([d.x,d.y,d.z,d.x,d.y,d.z-len],i*6)});sg.attributes.position.needsUpdate=true;
+ lamps.forEach(o=>{o.L.position.z+=v*dt;if(o.L.position.z>20)o.L.position.z-=70;o.sprite.scale.set(1.4,1.4+v*.06,1)});
+ flowUpd(fuel,dt,drive?1.2:.15+v*.01,1);flowUpd(hv,dt,brk&&v>.5?1.4:(drive?1.2:.15+v*.01),brk&&v>.5?-1:1);
+ hv.mat.color.setHex(brk&&v>.5?0x7dffb0:0x7fd0ff);hv.mat.size=.14+.06*Math.sin(t*8);fuel.mat.size=.14+.06*Math.sin(t*8+1);
+ P.pool.material.opacity*=.85+.15*Math.sin(t*3);E.pool.material.opacity*=.85+.15*Math.sin(t*3+1.5);
+ bloom.strength=.8+.25*brkS+.2*drv*sf;
+ camUpdate(dt,t,v);
+ comp.render();});
 </script></body></html>
