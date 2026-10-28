@@ -1,0 +1,73 @@
+/* NJ Learning Hub 3D Book — theme tokens (edit here only) */
+:root{
+  --font:'Source Serif 4',Georgia,serif;
+  --ink:#1d1b18; --txt:#1d1b18; --muted:rgba(29,27,24,.62);
+  --acc:#7b4dff; --acc2:#e0662a; --ok:#2e9b5b; --bad:#c8433a; --blue:#2b7de9;
+  --glass:rgba(255,253,246,.46); --glassB:rgba(255,255,255,.7); --chip:rgba(255,255,255,.42);
+  --blur:blur(18px) saturate(1.6); --r:22px;
+  --shadow:0 10px 30px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.75),inset 0 -1px 0 rgba(0,0,0,.05);
+  --bg:#ece6d8;
+}
+body.dark{--txt:#f4f0e6;--muted:rgba(244,240,230,.62);--glass:rgba(28,28,38,.5);--glassB:rgba(255,255,255,.16);--chip:rgba(255,255,255,.08);--bg:#14131a}
+body.lowfps{--glass:rgba(252,249,240,.96);--blur:none}
+body.lowfps.dark{--glass:rgba(30,30,40,.97)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;font-family:var(--font);color:var(--txt);background:var(--bg)}
+body.lab{overflow:hidden;overscroll-behavior:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.glass{background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glassB);border-radius:var(--r);box-shadow:var(--shadow)}
+.brand{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;padding:7px 13px;font-size:13px;font-weight:600;border-radius:999px;color:var(--txt);text-decoration:none;z-index:5}
+.brand b{color:var(--acc)}
+#hint{position:fixed;top:max(16px,env(safe-area-inset-top));right:14px;font-size:12px;color:var(--muted);font-style:italic}
+#ui{position:fixed;left:50%;transform:translateX(-50%);bottom:max(10px,env(safe-area-inset-bottom));width:min(640px,calc(100% - 20px));display:flex;flex-direction:column;gap:8px;z-index:4}
+@media(min-width:1000px){#ui{left:auto;right:16px;transform:none;top:max(64px,env(safe-area-inset-top));bottom:16px;width:400px;justify-content:flex-end}}
+#card{overflow:hidden;display:flex;flex-direction:column;min-height:0}
+#cardHead{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer}
+#cardHead .n{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#fff;font-weight:600;font-size:14px}
+#cardHead .t{flex:1;min-width:0;font-size:17px;font-weight:600;line-height:1.2}
+#cardHead .t small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+#chev{transition:transform .3s;font-size:12px}
+#card.open #chev{transform:rotate(180deg)}
+#cardBody{max-height:0;overflow-y:auto;transition:max-height .35s ease;padding:0 16px;font-size:14.5px;line-height:1.45;-webkit-overflow-scrolling:touch}
+#card.open #cardBody{max-height:34vh;padding-bottom:12px}
+@media(min-width:1000px){#card.open #cardBody{max-height:calc(100vh - 190px)}}
+.sec{margin:8px 0}.sec .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc2);font-weight:600}
+.sec.q p{font-size:16px;font-style:italic;margin:2px 0}
+.ref{display:inline-block;font-size:12px;padding:3px 9px;border-radius:999px;background:var(--chip);border:1px solid var(--glassB);margin:4px 0}
+details.concl summary{cursor:pointer;color:var(--acc);font-weight:600}
+.row{display:grid;grid-template-columns:58px 1fr 74px;align-items:center;gap:8px;margin:5px 0;font-size:14px}
+.row.hl span{color:var(--acc);font-weight:600}
+.row output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--acc);height:28px}
+.reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin:10px 0}
+.reads div{text-align:center;padding:6px 4px;border-radius:14px;background:var(--chip);border:1px solid var(--glassB);font-size:12px}
+.reads b{display:block;font-size:16px;color:var(--acc);font-variant-numeric:tabular-nums}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+button.pill{font:inherit;font-size:13.5px;padding:7px 13px;border-radius:999px;border:1px solid var(--glassB);background:var(--chip);color:var(--txt);cursor:pointer}
+button.pill.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.seg{display:inline-flex;border-radius:999px;border:1px solid var(--glassB);overflow:hidden}
+.seg button{font:inherit;font-size:13px;padding:6px 12px;border:0;background:transparent;color:var(--txt);cursor:pointer}
+.seg button.on{background:var(--acc2);color:#fff}
+.note{font-size:12.5px;color:var(--muted)}
+.f{margin:6px 0;overflow-x:auto}
+hr.soft{border:0;border-top:1px solid var(--glassB);margin:10px 0}
+#bar{display:flex;align-items:center;justify-content:space-between;padding:5px 6px;border-radius:999px}
+#bar button{background:none;border:0;color:var(--txt);width:40px;height:40px;border-radius:50%;cursor:pointer;display:grid;place-items:center;flex:none}
+#bar button:active{background:var(--chip)}
+#bar svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#dots{flex:1;display:flex;justify-content:center;gap:5px;min-width:0}
+#dots i{width:7px;height:7px;border-radius:50%;background:var(--glassB);border:1px solid var(--muted);cursor:pointer}
+#dots i.seen{background:var(--muted)}#dots i.cur{background:var(--acc);border-color:var(--acc);width:18px;border-radius:9px}
+#menu{position:fixed;z-index:6;left:50%;transform:translateX(-50%);bottom:calc(max(10px,env(safe-area-inset-bottom)) + 62px);width:min(360px,90%);padding:8px;display:none;max-height:60vh;overflow:auto}
+#menu.show{display:block}
+#menu div{padding:9px 12px;border-radius:14px;cursor:pointer;font-size:14.5px}
+#menu div:hover,#menu div.cur{background:var(--chip)}
+#menu a{display:block;padding:9px 12px;color:var(--acc);text-decoration:none;font-size:14px}
+#quiz{position:fixed;inset:0;z-index:8;display:none;place-items:center;background:rgba(0,0,0,.25);padding:16px}
+#quiz.show{display:grid}
+#quiz .box{width:min(560px,100%);max-height:86vh;overflow:auto;padding:18px}
+.qq{margin:10px 0;padding:10px;border-radius:14px;background:var(--chip)}
+.qq .opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.qq button.ok{background:var(--ok);color:#fff}.qq button.no{background:var(--bad);color:#fff}
+.qq .why{font-size:13px;color:var(--muted);margin-top:6px;display:none}.qq.done .why{display:block}
+body.cover #ui,body.cover .brand,body.cover #hint,body.cover #menu{display:none!important}

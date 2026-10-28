@@ -1,45 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NJ Learning Hub · 3D Physics Book</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
+<html lang="en"><head>
+<meta charset="utf-8"><link rel="icon" href="favicon.svg"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NJ Learning Hub · 3D Physics & Maths Book</title>
+<meta name="description" content="Interactive 3D simulations for every NCERT Class 11 & 12 Physics and Maths chapter — by Nihal Jani, NJ Learning Hub, Ahmedabad.">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="engine/theme.css">
 <style>
-:root{--ink:#1c2433;--mut:rgba(28,36,51,.62);--acc:#9a3b2a;--gold:#c8961e;--serif:"Source Serif 4",Georgia,serif}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%}
-body{font-family:var(--serif);color:var(--ink);background:radial-gradient(ellipse at 60% 40%,#fbf6ea,#e9dfca 60%,#cfc3ab);-webkit-font-smoothing:antialiased}
-main{max-width:680px;margin:0 auto;padding:14vh 24px 72px}
-.brand{font:600 11px var(--serif);letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
-h1{font:600 2.5rem/1.12 var(--serif);margin:.4em 0 .35em}
-h1:after{content:"";display:block;width:60px;height:2px;background:var(--gold);margin-top:14px}
-.lead{color:var(--mut);font-size:1.12rem;line-height:1.6;margin:0 0 28px}
-.card{display:block;text-decoration:none;color:inherit;background:linear-gradient(180deg,rgba(251,247,238,.93),rgba(246,239,224,.88));border:1px solid rgba(255,255,255,.7);border-left:3px solid var(--acc);border-radius:6px 22px 22px 6px;box-shadow:0 20px 60px rgba(60,40,10,.18);padding:22px 26px}
-.card:hover{background:#fffdf8}
-.chap{font:italic 400 .95rem var(--serif);color:var(--mut);margin:0 0 6px}
-.card h2{font:600 1.55rem/1.2 var(--serif);margin:0}
-.card p{margin:8px 0 0;color:var(--mut);line-height:1.55}
-.go{display:inline-block;margin-top:14px;color:var(--acc);font-weight:600}
-</style>
-</head>
-<body>
-<main>
-  <div class="brand">NJ Learning Hub</div>
-  <h1>NJ Learning Hub · 3D Physics Book</h1>
-  <p class="lead">Interactive 3D lessons for Std 11-12 physics. Drag, launch, and measure.</p>
-  <a class="card" href="./projectile-circular/">
-    <div class="chap">Std 11 Physics · Motion in a Plane</div>
-    <h2>Projectile &amp; Circular Motion</h2>
-    <p>Fire a projectile, compare complementary angles, and cut the string on uniform circular motion.</p>
-    <span class="go">Open the lesson</span>
-  </a>
-  <a class="card" href="./two-hearts/" style="margin-top:18px">
-    <div class="chap">Std 11 Physics · Work, Energy &amp; Power</div>
-    <h2>Two Hearts: Petrol vs Electric</h2>
-    <p>Drive two glowing cars side by side and watch where every kilojoule goes: engine heat, friction, drag and regenerative braking.</p>
-    <span class="go">Open the lesson</span>
-  </a>
-</main>
-</body>
-</html>
+body{min-height:100%;background:radial-gradient(1200px 600px at 10% -10%,#d9ccff 0,transparent 60%),radial-gradient(900px 600px at 110% 10%,#ffd9c2 0,transparent 55%),var(--bg)}
+body.dark{background:radial-gradient(1200px 600px at 10% -10%,#2a2150 0,transparent 60%),radial-gradient(900px 600px at 110% 10%,#3a2418 0,transparent 55%),var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brand{position:static}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.05;margin:26px 0 8px}
+h1 em{color:var(--acc)}
+.sub{color:var(--muted);max-width:640px;font-size:16px}
+.filters{position:sticky;top:8px;z-index:3;display:flex;flex-wrap:wrap;gap:8px;padding:8px;margin:20px 0;border-radius:22px;width:fit-content;max-width:100%}
+.filters .seg button{padding:7px 14px;font-size:14px}
+.stat{font-size:13px;color:var(--muted);margin:-8px 0 14px 6px}
+h2{font-size:20px;margin:26px 0 10px}
+h2 small{font-weight:400;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;text-decoration:none;color:var(--txt);overflow:hidden;transition:transform .2s}
+a.card:hover{transform:translateY(-3px)}
+.cover{aspect-ratio:16/10;background:#e9e2d2 center/cover;position:relative}
+.cover.soon{background:repeating-linear-gradient(45deg,rgba(0,0,0,.03) 0 8px,transparent 8px 16px),linear-gradient(135deg,#efe9dc,#e1d8c4);display:grid;place-items:center;font-size:40px;color:rgba(0,0,0,.18);font-style:italic}
+body.dark .cover.soon{background:linear-gradient(135deg,#25232d,#1b1a22);color:rgba(255,255,255,.15)}
+.badge{position:absolute;top:8px;left:8px;font-size:11px;padding:3px 9px;border-radius:999px;background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glassB)}
+.badge.live{background:var(--acc);color:#fff;border-color:var(--acc)}
+.prog{position:absolute;right:8px;top:8px;font-size:11px;padding:3px 9px;border-radius:999px;background:var(--ok);color:#fff}
+.body{padding:12px 14px 14px}
+.meta{font-size:12px;color:var(--acc2);font-weight:600;letter-spacing:.03em}
+.body b{display:block;font-size:17px;margin:3px 0}
+.body p{margin:4px 0 0;font-size:13.5px;color:var(--muted);font-style:italic}
+.bar{height:4px;border-radius:2px;background:var(--glassB);margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok)}
+.card.soon{opacity:.72}
+footer{margin-top:40px;font-size:13px;color:var(--muted);text-align:center}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr;gap:10px}.body b{font-size:15px}.body p{display:none}.filters .seg button{padding:6px 10px;font-size:13px}}
+#theme{border:0;background:none;color:var(--txt);font-size:18px;cursor:pointer}
+</style></head><body>
+<div class="wrap">
+<header><span class="brand glass">NJ Learning Hub · <b>Nihal Jani</b></span><button id="theme" aria-label="theme">◐</button></header>
+<h1>The 3D <em>Physics & Maths</em> Book</h1>
+<p class="sub">Every NCERT Class 11 & 12 chapter as a guided 3D lab: a question, things to try, what to expect, and the textbook section it comes from.</p>
+<div class="filters glass">
+ <span class="seg" id="fSub"><button data-v="all" class="on">All</button><button data-v="physics">Physics</button><button data-v="maths">Maths</button></span>
+ <span class="seg" id="fCls"><button data-v="all" class="on">XI & XII</button><button data-v="11">Class XI</button><button data-v="12">Class XII</button></span>
+ <span class="seg" id="fSt"><button data-v="all" class="on">All</button><button data-v="live">Live</button></span>
+</div>
+<div class="stat" id="stat"></div>
+<div id="list"></div>
+<footer>© NJ Learning Hub, Ahmedabad · Chapter numbering follows the current rationalised NCERT textbooks.</footer>
+</div>
+<script type="module">
+import {all,prefs} from './engine/progress.js';
+if(prefs.get('dark',false))document.body.classList.add('dark');
+document.getElementById('theme').onclick=()=>{const d=document.body.classList.toggle('dark');prefs.set('dark',d)};
+const cat=await (await fetch('catalog.json')).json(),P=all();
+const st={sub:'all',cls:'all',st:'all',...prefs.get('filters',{})};
+const ROMAN={11:'XI',12:'XII'};
+function card(c){const live=c.status==='live',p=P[c.slug],n=c.steps.length,seen=p?.seen?.length||0;
+  const pct=n?Math.round(Math.min(seen,n)/n*100):0;const done=p&&(n?seen>=n:true);
+  const inner=`<div class="cover ${live?'':'soon'}" ${live&&c.cover?`style="background-image:url('${c.cover}')"`:''}>${live?'':c.ncertChapter.number}
+   <span class="badge ${live?'live':''}">${live?'● Live':'Coming soon'}</span>${p?`<span class="prog">${p.quiz?`Quiz ${p.quiz.score}/${p.quiz.total}`:done?'✓ Done':pct+'%'}</span>`:''}</div>
+   <div class="body"><div class="meta">${c.subject==='physics'?'PHYSICS':'MATHS'} ${ROMAN[c.class]} · CH ${c.ncertChapter.number}${c.ncertChapter.section?' · §'+c.ncertChapter.section:''}</div>
+   <b>${c.title}</b>${c.question?`<p>${c.question}</p>`:`<p>${c.ncertChapter.title}</p>`}${live&&n?`<div class="bar"><i style="width:${pct}%"></i></div>`:''}</div>`;
+  return live?`<a class="card glass" href="${c.path}">${inner}</a>`:`<div class="card glass soon">${inner}</div>`}
+function render(){const f=cat.chapters.filter(c=>(st.sub==='all'||c.subject===st.sub)&&(st.cls==='all'||c.class==+st.cls)&&(st.st==='all'||c.status==='live'));
+  const groups={};for(const c of f){const k=`${c.subject}|${c.class}`;(groups[k]=groups[k]||[]).push(c)}
+  const live=f.filter(c=>c.status==='live').length;document.getElementById('stat').textContent=`${live} live · ${f.length-live} coming soon`;
+  document.getElementById('list').innerHTML=Object.entries(groups).map(([k,cs])=>{const[s,cl]=k.split('|');cs.sort((a,b)=>(b.status==='live')-(a.status==='live')||a.ncertChapter.number-b.ncertChapter.number);
+    return`<h2>${s==='physics'?'Physics':'Mathematics'} · Class ${ROMAN[cl]} <small>${cs.filter(c=>c.status==='live').length}/${cs.length} live</small></h2><div class="grid">${cs.map(card).join('')}</div>`}).join('')||'<p>No chapters match.</p>';
+  for(const[id,key]of[['fSub','sub'],['fCls','cls'],['fSt','st']])document.querySelectorAll(`#${id} button`).forEach(b=>b.classList.toggle('on',b.dataset.v===String(st[key])))}
+for(const[id,key]of[['fSub','sub'],['fCls','cls'],['fSt','st']])document.getElementById(id).onclick=e=>{const v=e.target.dataset.v;if(!v)return;st[key]=v;prefs.set('filters',st);render()};
+render();
+</script></body></html>

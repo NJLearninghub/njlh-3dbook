@@ -1,0 +1,30 @@
+export default {
+  slug:'uniform-circular-motion', title:'Uniform Circular Motion', subject:'physics', class:11, stage:'paper',
+  ncert:{chapter:3,chapterTitle:'Motion in a Plane',section:'3.10',ref:'NCERT Physics XI · Ch 3 Motion in a Plane · §3.10 Uniform circular motion (p. 40)'},
+  question:'If the speed never changes, why is a whirling stone accelerating?',
+  steps:[
+    {id:'whirl',title:'Whirl a stone',shot:'overview',set:{r:1.5,v:3},
+     question:'A stone whirls on a string at constant speed. Is its velocity constant?',action:'Watch the stone go round. Drag to look from above.',
+     expected:'Same speed, but the direction of motion keeps turning.',conclusion:'Velocity is a vector; a change in direction alone is a change in velocity, so the stone is accelerated.'},
+    {id:'tangent',title:'Velocity is tangent',shot:'top',layers:['rig','stone','vel'],
+     question:'Which way does the velocity arrow point at each instant?',action:'Follow the orange $\\vec v$ arrow from directly above.',
+     expected:'Always along the tangent, at right angles to the string.',conclusion:'$\\vec v$ is tangent to the circle; its magnitude $v$ is constant.'},
+    {id:'centripetal',title:'Acceleration to the centre',shot:'top',
+     question:'Where does the acceleration point?',action:'Look at the green $\\vec a_c$ arrow along the string.',
+     expected:'Always towards the centre, perpendicular to $\\vec v$.',conclusion:'Centripetal acceleration $a_c=v^2/r$ points to the centre; its direction keeps turning, so it is not a constant vector.',math:'$$a_c=\\frac{v^2}{r}$$'},
+    {id:'speed',title:'Double the speed',shot:'overview',set:{v:2,r:1.5},focus:['v'],
+     question:'If you double v, how much does $a_c$ change?',action:'Note $a_c$ at v = 2 m/s, then slide v to 4 m/s.',
+     expected:'$a_c$ goes from 2.7 to 10.7 m/s² — four times.',conclusion:'$a_c\\propto v^2$: double the speed, four times the pull needed from the string.'},
+    {id:'radius',title:'ω, T and ν',shot:'side',set:{v:3},focus:['r'],
+     question:'At fixed speed, how do ω and the period change with radius?',action:'Slide r and read ω, T and ν.',
+     expected:'Bigger r → smaller ω, longer T.',conclusion:'$v=r\\omega$, $\\omega=2\\pi\\nu$, $T=2\\pi r/v$, and $a_c=\\omega^2r=4\\pi^2\\nu^2r$.'},
+    {id:'cut',title:'Cut the string',shot:'top',auto:'cut',
+     question:'If the string breaks, which way does the stone fly?',action:'Press ✂ Cut the string (try at different points).',
+     expected:'It flies off along the tangent — not outward along the string.',conclusion:'With no centripetal force, the stone keeps its instantaneous velocity (Newton\'s first law). The dashed line is the tangent.'}],
+  quiz:[
+    {q:'In uniform circular motion, acceleration points…',options:['along v','outward','towards centre','nowhere – it is zero'],answer:2},
+    {q:'If the string is cut, the stone moves…',options:['radially out','along the tangent','towards centre','in a spiral'],answer:1},
+    {q:'Jogging at 5 m/s on a circle of radius 20 m, $a_c$ is…',options:['0.25 m/s²','1.25 m/s²','4 m/s²','100 m/s²'],answer:1,why:'$a_c=v^2/r=25/20$.'},
+    {q:'At fixed r, doubling ω makes $a_c$…',options:['2×','4×','½×','same'],answer:1,why:'$a_c=\\omega^2 r$.'},
+    {q:'Which quantity is constant in UCM?',options:['velocity','acceleration vector','speed','none'],answer:2}]
+};

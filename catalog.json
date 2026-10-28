@@ -1,0 +1,884 @@
+{
+ "version": 1,
+ "book": "NJ Learning Hub · 3D Physics & Maths Book",
+ "author": "Nihal Jani",
+ "syllabus": "NCERT rationalised textbooks (2023-24 onwards)",
+ "chapters": [
+  {
+   "slug": "physics-11-01-units-and-measurement",
+   "title": "Units and Measurement",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 1,
+    "title": "Units and Measurement"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-02-motion-in-a-straight-line",
+   "title": "Motion in a Straight Line",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 2,
+    "title": "Motion in a Straight Line"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "projectile-motion",
+   "title": "Projectile Motion",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 3,
+    "title": "Motion in a Plane",
+    "section": "3.9"
+   },
+   "question": "Why does every thrown ball follow the same kind of curve?",
+   "steps": [
+    "Launch a ball",
+    "Two motions in one",
+    "At the very top",
+    "Best angle for range",
+    "Complementary angles",
+    "Launch from a cliff",
+    "Real vs ideal"
+   ],
+   "path": "chapters/projectile-motion/",
+   "cover": "covers/projectile-motion.jpg",
+   "status": "live",
+   "engine": true
+  },
+  {
+   "slug": "uniform-circular-motion",
+   "title": "Uniform Circular Motion",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 3,
+    "title": "Motion in a Plane",
+    "section": "3.10"
+   },
+   "question": "If the speed never changes, why is a whirling stone accelerating?",
+   "steps": [
+    "Whirl a stone",
+    "Velocity is tangent",
+    "Acceleration to the centre",
+    "Double the speed",
+    "ω, T and ν",
+    "Cut the string"
+   ],
+   "path": "chapters/uniform-circular-motion/",
+   "cover": "covers/uniform-circular-motion.jpg",
+   "status": "live",
+   "engine": true
+  },
+  {
+   "slug": "physics-11-04-laws-of-motion",
+   "title": "Laws of Motion",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 4,
+    "title": "Laws of Motion"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "two-hearts",
+   "title": "Two Hearts: Petrol vs Electric",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 5,
+    "title": "Work, Energy and Power"
+   },
+   "question": "Where does the energy of a moving car go, and who wastes less?",
+   "steps": [],
+   "path": "two-hearts/",
+   "cover": "covers/two-hearts.jpg",
+   "status": "live",
+   "engine": false,
+   "note": "legacy single-file page (night stage); migrate to engine later"
+  },
+  {
+   "slug": "physics-11-05-work-energy-and-power",
+   "title": "Work, Energy and Power",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 5,
+    "title": "Work, Energy and Power"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-06-system-of-particles-and-rotational-motion",
+   "title": "System of Particles and Rotational Motion",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 6,
+    "title": "System of Particles and Rotational Motion"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-07-gravitation",
+   "title": "Gravitation",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 7,
+    "title": "Gravitation"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-08-mechanical-properties-of-solids",
+   "title": "Mechanical Properties of Solids",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 8,
+    "title": "Mechanical Properties of Solids"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-09-mechanical-properties-of-fluids",
+   "title": "Mechanical Properties of Fluids",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Mechanical Properties of Fluids"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-10-thermal-properties-of-matter",
+   "title": "Thermal Properties of Matter",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 10,
+    "title": "Thermal Properties of Matter"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-11-thermodynamics",
+   "title": "Thermodynamics",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 11,
+    "title": "Thermodynamics"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-12-kinetic-theory",
+   "title": "Kinetic Theory",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 12,
+    "title": "Kinetic Theory"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-13-oscillations",
+   "title": "Oscillations",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 13,
+    "title": "Oscillations"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-11-14-waves",
+   "title": "Waves",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 14,
+    "title": "Waves"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-01-electric-charges-and-fields",
+   "title": "Electric Charges and Fields",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 1,
+    "title": "Electric Charges and Fields"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-02-electrostatic-potential-and-capacitance",
+   "title": "Electrostatic Potential and Capacitance",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 2,
+    "title": "Electrostatic Potential and Capacitance"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-03-current-electricity",
+   "title": "Current Electricity",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 3,
+    "title": "Current Electricity"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-04-moving-charges-and-magnetism",
+   "title": "Moving Charges and Magnetism",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 4,
+    "title": "Moving Charges and Magnetism"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-05-magnetism-and-matter",
+   "title": "Magnetism and Matter",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 5,
+    "title": "Magnetism and Matter"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-06-electromagnetic-induction",
+   "title": "Electromagnetic Induction",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 6,
+    "title": "Electromagnetic Induction"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-07-alternating-current",
+   "title": "Alternating Current",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 7,
+    "title": "Alternating Current"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-08-electromagnetic-waves",
+   "title": "Electromagnetic Waves",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 8,
+    "title": "Electromagnetic Waves"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-09-ray-optics-and-optical-instruments",
+   "title": "Ray Optics and Optical Instruments",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Ray Optics and Optical Instruments"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-10-wave-optics",
+   "title": "Wave Optics",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 10,
+    "title": "Wave Optics"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-11-dual-nature-of-radiation-and-matter",
+   "title": "Dual Nature of Radiation and Matter",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 11,
+    "title": "Dual Nature of Radiation and Matter"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-12-atoms",
+   "title": "Atoms",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 12,
+    "title": "Atoms"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-13-nuclei",
+   "title": "Nuclei",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 13,
+    "title": "Nuclei"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "physics-12-14-semiconductor-electronics-materials-devices-and-simple-circuits",
+   "title": "Semiconductor Electronics: Materials, Devices and Simple Circuits",
+   "subject": "physics",
+   "class": 12,
+   "ncertChapter": {
+    "number": 14,
+    "title": "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-01-sets",
+   "title": "Sets",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 1,
+    "title": "Sets"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-02-relations-and-functions",
+   "title": "Relations and Functions",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 2,
+    "title": "Relations and Functions"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-03-trigonometric-functions",
+   "title": "Trigonometric Functions",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 3,
+    "title": "Trigonometric Functions"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-04-complex-numbers-and-quadratic-equations",
+   "title": "Complex Numbers and Quadratic Equations",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 4,
+    "title": "Complex Numbers and Quadratic Equations"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-05-linear-inequalities",
+   "title": "Linear Inequalities",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 5,
+    "title": "Linear Inequalities"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-06-permutations-and-combinations",
+   "title": "Permutations and Combinations",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 6,
+    "title": "Permutations and Combinations"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-07-binomial-theorem",
+   "title": "Binomial Theorem",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 7,
+    "title": "Binomial Theorem"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-08-sequences-and-series",
+   "title": "Sequences and Series",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 8,
+    "title": "Sequences and Series"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-09-straight-lines",
+   "title": "Straight Lines",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Straight Lines"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-10-conic-sections",
+   "title": "Conic Sections",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 10,
+    "title": "Conic Sections"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-11-introduction-to-three-dimensional-geometry",
+   "title": "Introduction to Three Dimensional Geometry",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 11,
+    "title": "Introduction to Three Dimensional Geometry"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-12-limits-and-derivatives",
+   "title": "Limits and Derivatives",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 12,
+    "title": "Limits and Derivatives"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-13-statistics",
+   "title": "Statistics",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 13,
+    "title": "Statistics"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-11-14-probability",
+   "title": "Probability",
+   "subject": "maths",
+   "class": 11,
+   "ncertChapter": {
+    "number": 14,
+    "title": "Probability"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-01-relations-and-functions",
+   "title": "Relations and Functions",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 1,
+    "title": "Relations and Functions"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-02-inverse-trigonometric-functions",
+   "title": "Inverse Trigonometric Functions",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 2,
+    "title": "Inverse Trigonometric Functions"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-03-matrices",
+   "title": "Matrices",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 3,
+    "title": "Matrices"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-04-determinants",
+   "title": "Determinants",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 4,
+    "title": "Determinants"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-05-continuity-and-differentiability",
+   "title": "Continuity and Differentiability",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 5,
+    "title": "Continuity and Differentiability"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-06-application-of-derivatives",
+   "title": "Application of Derivatives",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 6,
+    "title": "Application of Derivatives"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-07-integrals",
+   "title": "Integrals",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 7,
+    "title": "Integrals"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-08-application-of-integrals",
+   "title": "Application of Integrals",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 8,
+    "title": "Application of Integrals"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-09-differential-equations",
+   "title": "Differential Equations",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Differential Equations"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-10-vector-algebra",
+   "title": "Vector Algebra",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 10,
+    "title": "Vector Algebra"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-11-three-dimensional-geometry",
+   "title": "Three Dimensional Geometry",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 11,
+    "title": "Three Dimensional Geometry"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-12-linear-programming",
+   "title": "Linear Programming",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 12,
+    "title": "Linear Programming"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  },
+  {
+   "slug": "maths-12-13-probability",
+   "title": "Probability",
+   "subject": "maths",
+   "class": 12,
+   "ncertChapter": {
+    "number": 13,
+    "title": "Probability"
+   },
+   "steps": [],
+   "cover": null,
+   "status": "soon",
+   "question": "",
+   "path": null
+  }
+ ]
+}
