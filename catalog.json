@@ -866,19 +866,30 @@
    "path": null
   },
   {
-   "slug": "maths-12-13-probability",
-   "title": "Probability",
+   "slug": "bayes-theorem",
+   "title": "Bayes’ Theorem",
    "subject": "maths",
    "class": 12,
    "ncertChapter": {
     "number": 13,
-    "title": "Probability"
+    "title": "Probability",
+    "section": "13.5"
    },
-   "steps": [],
-   "cover": null,
-   "status": "soon",
-   "question": "",
-   "path": null
+   "question": "A test is 90% accurate and you test positive. How likely is it that you really have the disease?",
+   "steps": [
+    "A crowd of 1000",
+    "Split by the prior",
+    "Then the test",
+    "Keep only the positives",
+    "Formula vs counting",
+    "Test again",
+    "Three bags (NCERT style)",
+    "Many draws"
+   ],
+   "path": "chapters/bayes-theorem/",
+   "cover": "covers/bayes-theorem.jpg",
+   "status": "live",
+   "engine": true
   }
  ]
 }
