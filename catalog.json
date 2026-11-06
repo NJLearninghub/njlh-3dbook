@@ -176,6 +176,60 @@
    "path": null
   },
   {
+   "slug": "continuity-equation",
+   "title": "Equation of Continuity",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Mechanical Properties of Fluids",
+    "section": "9.3"
+   },
+   "question": "Why does water speed up when a pipe gets narrower?",
+   "steps": [
+    "Water in a narrowing pipe",
+    "Equal volumes in, equal volumes out",
+    "Halve the radius",
+    "Radius or diameter?",
+    "Turn up the tap",
+    "Spray pump (NCERT Ex 9.16)",
+    "When does it hold?"
+   ],
+   "path": "chapters/continuity-equation/",
+   "cover": "covers/continuity-equation.jpg",
+   "status": "live",
+   "engine": true
+  },
+  {
+   "slug": "bernoullis-theorem",
+   "title": "Bernoulli’s Principle",
+   "subject": "physics",
+   "class": 11,
+   "ncertChapter": {
+    "number": 9,
+    "title": "Mechanical Properties of Fluids",
+    "section": "9.4"
+   },
+   "question": "NCERT Fig. 9.9: why must the pressure change as fluid rises through a narrowing pipe?",
+   "steps": [
+    "The textbook figure (Fig. 9.9)",
+    "Equal volumes: v₁Δt and v₂Δt",
+    "Work done by the pressure forces",
+    "Changes in KE and PE",
+    "Bernoulli’s equation",
+    "Fluid at rest",
+    "Level pipe: faster means lower pressure",
+    "Application: Torricelli’s law",
+    "Closed, pressurised tank",
+    "Application: a spinning ball",
+    "Lift on a wing (NCERT Ex 9.14)"
+   ],
+   "path": "chapters/bernoullis-theorem/",
+   "cover": "covers/bernoullis-theorem.jpg",
+   "status": "live",
+   "engine": true
+  },
+  {
    "slug": "physics-11-09-mechanical-properties-of-fluids",
    "title": "Mechanical Properties of Fluids",
    "subject": "physics",
@@ -875,15 +929,15 @@
     "title": "Probability",
     "section": "13.5"
    },
-   "question": "A test is 90% accurate and you test positive. How likely is it that you really have the disease?",
+   "question": "NCERT Ex 13.3 Q5: a blood test is 99% effective, yet a positive result means only a 22/133 chance of disease. Why?",
    "steps": [
-    "A crowd of 1000",
+    "The textbook problem",
     "Split by the prior",
     "Then the test",
-    "Keep only the positives",
+    "NCERT answer: 22/133",
     "Formula vs counting",
     "Test again",
-    "Three bags (NCERT style)",
+    "Four boxes (NCERT Example 22)",
     "Many draws"
    ],
    "path": "chapters/bayes-theorem/",
